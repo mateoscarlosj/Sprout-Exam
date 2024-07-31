@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = "http://0.0.0.0:8000"
+export const API_BASE_URL = process.env.VUE_APP_API_BASE_URL
 
 const state = {
     user: null,
@@ -27,7 +27,7 @@ const actions = {
     console.log(username)
     try {
 
-        const response = await axios.post(`${API_URL}/users/token`, { username, password }, {
+        const response = await axios.post(`${API_BASE_URL}/users/token`, { username, password }, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },

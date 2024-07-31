@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-export const API_BASE_URL = 'http://0.0.0.0:8000/employees'; // Replace with your API base URL
-
+export const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
 const AUTH_TOKEN = localStorage.getItem('token') ;
 
 export const getApi = async (endpoint) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/${endpoint}`, {
+    const response = await axios.get(`${API_BASE_URL}/employees/${endpoint}`, {
       headers: {
         Authorization: `Bearer ${AUTH_TOKEN}`
       }
@@ -20,7 +19,7 @@ export const getApi = async (endpoint) => {
 
 export const postApi = async (endpoint, body) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/${endpoint}`, body, {
+    const response = await axios.post(`${API_BASE_URL}/employees/${endpoint}`, body, {
       headers: {
         Authorization: `Bearer ${AUTH_TOKEN}`,
         'Content-Type': 'application/json'
@@ -35,7 +34,7 @@ export const postApi = async (endpoint, body) => {
 
 export const putApi = async (endpoint, body) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/${endpoint}`, body, {
+    const response = await axios.put(`${API_BASE_URL}/employees/${endpoint}`, body, {
       headers: {
         Authorization: `Bearer ${AUTH_TOKEN}`,
         'Content-Type': 'application/json'
@@ -50,7 +49,7 @@ export const putApi = async (endpoint, body) => {
 
 export const deleteApi = async (endpoint) => {
   try {
-    const response = await axios.delete(`${API_BASE_URL}/${endpoint}`, {
+    const response = await axios.delete(`${API_BASE_URL}/employees/${endpoint}`, {
       headers: {
         Authorization: `Bearer ${AUTH_TOKEN}`
       }

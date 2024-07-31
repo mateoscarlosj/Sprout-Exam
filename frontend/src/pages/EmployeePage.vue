@@ -14,24 +14,23 @@
       />
     </div>
 
-    <!-- View Employee Modal -->
     <EmployeeModal
       :isVisible="showModal"
       :employee="selectedEmployee"
       @close="closeModal"
     />
 
-    <!-- Add Employee Modal -->
     <EmployeeAddModal
       :isVisible="showAddModal"
+      :error="showError"
       @close="closeModal"
       @submit="handleAddEmployee"
     />
 
-    <!-- Edit Employee Modal -->
     <EmployeeEditModal
       :isVisible="showEditModal"
       :employeeData="employeeForEdit"
+      :error="showError"
       @close="closeModal"
       @submit="handleEditEmployee"
     />
@@ -60,11 +59,12 @@ export default {
     const showModal = ref(false);
     const showAddModal = ref(false);
     const showEditModal = ref(false);
+    const showError = ref(false);
     const selectedEmployee = ref(null);
     const employeeForEdit = ref(null);
 
     const employees = computed(() => store.getters['employees/allEmployees']);
- onMounted(() => {
+    onMounted(() => {
       store.dispatch('employees/fetchEmployees');
     });
 
@@ -84,12 +84,12 @@ export default {
     const handleAddEmployee = async (data) => {
       try {
 
-        console.log("Pangit", data)
         await postApi('employees', data);
         showAddModal.value = false;
         store.dispatch('employees/fetchEmployees');
       } catch (error) {
         console.error('Failed to add employee:', error.message);
+        showError.value = true;
       }
     };
 
@@ -100,6 +100,7 @@ export default {
         store.dispatch('employees/fetchEmployees'); // Refresh employee list
       } catch (error) {
         console.error('Failed to edit employee:', error.message);
+        showError.value = true;
       }
     };
 
@@ -132,7 +133,8 @@ export default {
       employeeForEdit,
       handleAddEmployee,
       handleEditEmployee,
-      closeModal
+      closeModal,
+      showError
     };
   }
 };

@@ -38,12 +38,14 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - VUE_APP_API_BASE_URL
     ports:
       - "8080:80"
     networks:
       - sprout-exam-network
     environment:
-      - API_BASE_URL=http://0.0.0.0:8000
+      - VUE_APP_API_BASE_URL=http://localhost:8000
 
 networks:
   sprout-exam-network:

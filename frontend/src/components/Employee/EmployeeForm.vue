@@ -46,7 +46,7 @@
         </div>
         <div class="form-group" v-if="form.employee_type === 'regular'">
           <label for="number_of_leaves">Number of Leaves</label>
-          <input 
+          <input
             id="number_of_leaves" 
             v-model.number="form.number_of_leaves" 
             type="number" 

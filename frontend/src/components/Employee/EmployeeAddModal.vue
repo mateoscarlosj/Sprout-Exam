@@ -6,6 +6,9 @@
         <h2> <br/></h2>
       </div>
       <div class="modal-body">
+      <div class="alert alert-danger" role="alert"  v-if="error">
+        An error occurred while processing your request. Please check the information you entered and try again.
+      </div>
         <EmployeeForm
           :data="employee"
           @submit="submit"
@@ -24,7 +27,8 @@ export default {
   components: { EmployeeForm },
   props: {
     isVisible: Boolean,
-    disabled: Boolean
+    disabled: Boolean,
+    error: Boolean,
   },
   data() {
     return {

@@ -17,16 +17,16 @@
         <div class="form-group">
           <label for="password">Password</label>
           <input
-            type="password" 
-            id="password" 
-            class="form-control" 
-            v-model="password" 
-            required 
-            placeholder="Enter your password" 
+            type="password"
+            id="password"
+            class="form-control"
+            v-model="password"
+            required
+            placeholder="Enter your password"
           />
         </div>
+        <div v-if="error" class="error-message mt-3 mb-3">{{ error }}</div>
         <button type="submit" class="btn btn-primary w-100">Login</button>
-        <div v-if="error" class="error-message mt-3">{{ error }}</div>
       </form>
     </div>
   </div>
