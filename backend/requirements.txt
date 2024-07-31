@@ -1,0 +1,12 @@
+fastapi==0.88.0
+uvicorn==0.18.3
+sqlalchemy==1.4.46
+databases==0.5.5
+pydantic==1.10.2
+bcrypt==3.2.2
+psycopg2-binary>=2.9.5
+alembic==1.7.7
+pydantic[email]
+passlib[bcrypt]
+python-jose
+python-multipart

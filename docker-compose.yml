@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: sprout
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: sprout
+    ports:
+      - "5432:5432"
+    networks:
+      - sprout-exam-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sprout"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/code
+    networks:
+      - sprout-exam-network
+    environment:
+      - DATABASE_URL=postgresql://sprout:admin@db:5432/sprout
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - sprout-exam-network
+    environment:
+      - API_BASE_URL=http://0.0.0.0:8000
+
+networks:
+  sprout-exam-network:
+    driver: bridge
