@@ -49,7 +49,7 @@ export default {
     async handleLogin() {
       try {
         await this.login({ username: this.username, password: this.password });
-        this.$router.push('/employees'); // Redirect to dashboard
+        this.$router.push('/employees');
       } catch (err) {
         this.error = 'Login failed. Please try again.';
       }

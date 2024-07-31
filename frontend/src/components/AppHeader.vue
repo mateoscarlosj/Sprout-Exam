@@ -16,7 +16,7 @@ export default {
     async handleLogout() {
       try {
         await this.logout();
-        this.$router.push('/login'); // if using Vue Router
+        this.$router.push('/login');
       } catch (error) {
         console.error('Logout error:', error);
       }

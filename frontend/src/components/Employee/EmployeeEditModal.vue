@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import EmployeeForm from '@/components/Employee/EmployeeForm.vue'; // Adjust path if necessary
+import EmployeeForm from '@/components/Employee/EmployeeForm.vue';
 import { ref, watch } from 'vue';
 
 export default {

@@ -1,4 +1,4 @@
-import { getApi, postApi, putApi, deleteApi } from '../../api/employee'; // Adjust the import path as necessary
+import { getApi} from '../../api/employee';
 
 const state = {
   employees: [],
@@ -36,30 +36,6 @@ const actions = {
       commit('setLoading', false);
     }
   },
-  async addEmployee({ dispatch }, employee) {
-    try {
-      await postApi('employees', employee);
-      dispatch('fetchEmployees');
-    } catch (error) {
-      console.error('Failed to add employee:', error.message);
-    }
-  },
-  async updateEmployee({ dispatch }, { id, employee }) {
-    try {
-      await putApi(`employees/${id}`, employee);
-      dispatch('fetchEmployees');
-    } catch (error) {
-      console.error('Failed to update employee:', error.message);
-    }
-  },
-  async deleteEmployee({ dispatch }, id) {
-    try {
-      await deleteApi(`employees/${id}`);
-      dispatch('fetchEmployees');
-    } catch (error) {
-      console.error('Failed to delete employee:', error.message);
-    }
-  }
 };
 
 const mutations = {

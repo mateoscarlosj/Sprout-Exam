@@ -131,9 +131,6 @@ export default {
   },
   watch: {
     data: {
-    //   handler(newData) {
-    //     this.form = { ...newData };
-    //   },
       deep: true
     }
   },
